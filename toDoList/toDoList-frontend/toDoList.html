@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="./toDoList.css">
+    <title>To-DoList</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./images/check.png" alt="Logo" width="24" height="24">
+            </a>
+            <a class="navbar-brand" href="#">To-Do List</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorias
+                        </a>
+                        <ul class="dropdown-menu" id="dropdownCategorias">
+                            <li><span class="dropdown-item text-muted">Faça login primeiro</span></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <button type="button" id="btnAdicionarCategoria" class="btn btn-outline-secondary ms-2" style="display:none"
+                        data-bs-toggle="modal" data-bs-target="#adicionarCategoriaModal">
+                    + Categoria
+                </button>
+
+                <button type="button" id="btnAdicionarLista" class="btn btn-primary ms-2" style="display:none"
+                        data-bs-toggle="modal" data-bs-target="#adicionarLista">
+                    + Lista
+                </button>
+
+                <span id="navUsuario" class="navbar-text ms-3" style="display:none"></span>
+
+                <button type="button" id="btnSair" class="btn btn-outline-secondary ms-2" style="display:none">Sair</button>
+
+                <button type="button" id="btnCadastro" class="btn btn-outline-primary ms-2"
+                        data-bs-toggle="modal" data-bs-target="#cadastroModal">
+                    Cadastre-se
+                </button>
+
+                <button type="button" id="btnLogin" class="btn ms-2"
+                        data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTEÚDO DINÂMICO -->
+    <main id="conteudo" class="container my-4"></main>
+
+    <!-- MODAL ADICIONAR LISTA -->
+    <div class="modal fade" id="adicionarLista" tabindex="-1" aria-labelledby="adicionarListaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="adicionarListaLabel">Adicionar lista</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="adicionarListaAlert"></div>
+                    <form id="novaListaForm">
+                        <div class="form-group mb-3">
+                            <label for="inputTitulo">Título</label>
+                            <input type="text" class="form-control" id="inputTitulo" placeholder="Título da lista" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="categoriaLista">Categoria</label>
+                            <select class="form-select" id="categoriaLista" required>
+                                <option value="" disabled selected>Selecione uma categoria</option>
+                            </select>
+                        </div>
+                        <label for="inputItem">Itens</label>
+                        <div class="d-flex mt-2">
+                            <input class="form-control me-2" type="text" id="inputItem" placeholder="Adicione um item da lista" aria-label="Adicione um item"/>
+                            <button type="button" id="btnAdicionarItem" class="btn btn-primary">+</button>
+                        </div>
+                        <ul id="listaItens" class="list-unstyled mt-3 mb-0"></ul>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" id="btnAdicionar" class="btn btn-primary">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CADASTRO -->
+    <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="cadastroModalLabel">Cadastro</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cadastroAlert"></div>
+                    <form id="cadastroForm">
+                        <div class="form-group mb-2">
+                            <label for="inputNome">Nome</label>
+                            <input type="text" class="form-control" id="inputNome" placeholder="Digite seu nome" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="inputEmail">Email</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Digite seu email" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="inputSenha">Senha</label>
+                            <input type="password" class="form-control" id="inputSenha" placeholder="Mínimo 6 caracteres" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="inputConfirmarSenha">Confirmar Senha</label>
+                            <input type="password" class="form-control" id="inputConfirmarSenha" placeholder="Confirme sua senha" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" id="btnSalvarCadastro" class="btn btn-primary">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL LOGIN -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="loginAlert"></div>
+                    <form id="loginForm">
+                        <div class="form-group mb-3">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Digite seu email" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="loginSenha">Senha</label>
+                            <input type="password" class="form-control" id="loginSenha" placeholder="Digite sua senha" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" id="btnEntrar" class="btn btn-primary">Entrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDITAR LISTA -->
+    <div class="modal fade" id="editarListaModal" tabindex="-1" aria-labelledby="editarListaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editarListaModalLabel">Editar lista</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="editarListaAlert"></div>
+                    <form id="editarListaForm">
+                        <div class="form-group mb-3">
+                            <label for="editarTitulo">Título</label>
+                            <input type="text" class="form-control" id="editarTitulo" placeholder="" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="editarCategoriaLista">Categoria</label>
+                            <select class="form-select" id="editarCategoriaLista" required>
+                                <option value="" disabled selected>Selecione uma categoria</option>
+                            </select>
+                        </div>
+                        <label for="editarInputItem">Itens</label>
+                        <div class="d-flex mt-2">
+                            <input class="form-control me-2" type="text" id="editarInputItem" placeholder="Adicione um item da lista" aria-label="Adicione um item"/>
+                            <button type="button" id="btnEditarAdicionarItem" class="btn btn-primary">+</button>
+                        </div>
+                        <ul id="editarListaItens" class="list-unstyled mt-3 mb-0"></ul>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" id="btnSalvarEdicao" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ADICIONAR CATEGORIA -->
+    <div class="modal fade" id="adicionarCategoriaModal" tabindex="-1" aria-labelledby="adicionarCategoriaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="adicionarCategoriaModalLabel">Nova categoria</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="adicionarCategoriaAlert"></div>
+                    <form id="formAdicionarCategoria">
+                        <div class="form-group">
+                            <label for="inputNovaCategoria">Nome</label>
+                            <input type="text" class="form-control" id="inputNovaCategoria" placeholder="Nome da categoria" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" id="btnSalvarCategoria" class="btn btn-primary">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDITAR CATEGORIA -->
+    <div class="modal fade" id="editarCategoriaModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Editar categoria</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="editarCategoriaAlert"></div>
+                    <div class="form-group">
+                        <label for="inputEditarCategoria">Nome</label>
+                        <input type="text" class="form-control" id="inputEditarCategoria" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" id="btnSalvarEdicaoCategoria" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CONFIRMAR DELETE LISTA -->
+    <div class="modal fade" id="confirmarDeleteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body text-center py-4">
+                    <p class="mb-3 fw-semibold">Deseja deletar essa lista?</p>
+                    <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btnConfirmarDelete" class="btn btn-danger">Deletar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CONFIRMAR DELETE CATEGORIA -->
+    <div class="modal fade" id="confirmarDeleteCategoriaModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body text-center py-4">
+                    <p class="mb-3 fw-semibold">Deseja deletar essa categoria e todas as suas listas?</p>
+                    <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btnConfirmarDeleteCategoria" class="btn btn-danger">Deletar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center bg-body-tertiary mt-5">
+        <div class="container pt-4">
+            <section class="mb-4">
+                <a class="btn btn-link btn-floating btn-lg text-body m-1" href="#!" role="button">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a class="btn btn-link btn-floating btn-lg text-body m-1" href="#!" role="button">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a class="btn btn-link btn-floating btn-lg text-body m-1" href="#!" role="button">
+                    <i class="fab fa-github"></i>
+                </a>
+            </section>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(114, 114, 114, 0.05);">
+            © 2026 Copyleft <a class="text-body" href="#">Bárbara Azevedo</a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="./db.js"></script>
+    <script src="./toDoList.js"></script>
+</body>
+</html>
