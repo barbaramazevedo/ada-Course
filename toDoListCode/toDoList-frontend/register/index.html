@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Cadastro — To-Do List</title>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a class="navbar-brand" href="./styles.html">
+            <img src="../img/check.png" alt="Logo">
+            To-Do List
+        </a>
+        <div class="navbar-actions">
+            <a href="../login/index.html" class="btn btn-primary">Login</a>
+        </div>
+    </nav>
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <h1>Criar conta</h1>
+
+            <div id="cadastroAlert" class="alert alert-success alert-hidden">Cadastro realizado com sucesso!</div>
+
+            <form novalidate>
+                <div class="form-group">
+                    <label for="inputNome">Nome</label>
+                    <input type="text" class="form-control" id="inputNome" name="inputNome"
+                           placeholder="Digite seu nome" >
+                    <span class="error-msg" id="erro-nome"></span>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail"
+                           placeholder="Digite seu email" >
+                           <span class="error-msg" id="erro-email"></span>
+                </div>
+                <div class="form-group">
+                    <label for="inputSenha">Senha</label>
+                    <input type="password" class="form-control" id="inputSenha" name="inputSenha"
+                           placeholder="Mínimo 6 caracteres" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="inputConfirmarSenha">Confirmar senha</label>
+                    <input type="password" class="form-control" id="inputConfirmarSenha" name="inputconfirmarSenha"
+                           placeholder="Confirme sua senha" required minlength="6">
+                    <span class="error-msg" id="erro-senha"></span>
+                    
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Cadastrar</button>
+            </form>
+
+            <p class="auth-footer">
+                Já tem uma conta? <a href="../login/index.html">Entrar</a>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-icons">
+            <a class="footer-icon" href="#" title="Google"><i class="fab fa-google"></i></a>
+            <a class="footer-icon" href="https://www.linkedin.com/in/barbara-moreira-azevedo/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a class="footer-icon" href="https://github.com/barbaramazevedo" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+        <div class="footer-copy">
+            © 2026 Copyleft <a href="#">Bárbara Azevedo</a>
+        </div>
+    </footer>
+    <script src="./script.js"></script>
+</body>
+</html>
