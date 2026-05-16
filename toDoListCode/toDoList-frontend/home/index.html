@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <title>To-Do List</title>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a class="navbar-brand" href="./index.html">
+            <img src="../img/check.png" alt="Logo">
+            To-Do List
+        </a>
+
+        <ul class="navbar-nav">
+            <li><a class="nav-link" href="#">Categorias</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+            <a href="../register/index.html" class="btn btn-outline-primary">Cadastre-se</a>
+            <a href="../login/index.html" class="btn btn-primary">Login</a>
+        </div>
+    </nav>
+
+    <main class="container my-4">
+
+        <!-- Estado vazio — visível quando o usuário não está logado -->
+        <div class="hero">
+            <i class="fa-solid fa-list-check hero-icon"></i>
+            <h4>Organize suas tarefas</h4>
+            <p>Faça login para acessar suas listas.</p>
+            <div class="btn-group">
+                <a href="../login/index.html" class="btn btn-primary">Entrar</a>
+                <a href="../register/index.html" class="btn btn-outline-primary">Criar conta</a>
+            </div>
+        </div>
+
+        <!--
+        <div class="category-section">
+            <div class="category-header">
+                <h2>Trabalho</h2>
+                <button class="btn-icon" title="Editar categoria"><i class="fa-solid fa-pen fa-xs"></i></button>
+                <button class="btn-icon danger" title="Deletar categoria"><i class="fa-solid fa-trash fa-xs"></i></button>
+            </div>
+            <div class="card-grid">
+                <div class="card-col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-actions">
+                                <button class="btn-icon" title="Editar lista"><i class="fa-solid fa-pen"></i></button>
+                                <button class="btn-icon danger" title="Deletar lista"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                            <h5 class="card-title">Sprint 12</h5>
+                            <div class="add-item-row">
+                                <input class="form-control" type="text" placeholder="Adicione um item">
+                                <button class="btn btn-primary btn-sm">+</button>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li class="list-item">
+                                    <input type="checkbox" class="form-check-input">
+                                    <span>Revisar pull requests</span>
+                                    <button class="btn-remove">×</button>
+                                </li>
+                                <li class="list-item">
+                                    <input type="checkbox" class="form-check-input" checked>
+                                    <span class="text-strikethrough">Deploy em staging</span>
+                                    <button class="btn-remove">×</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+
+    </main>
+
+    <footer>
+        <div class="footer-icons">
+            <a class="footer-icon" href="#" title="Google"><i class="fab fa-google"></i></a>
+            <a class="footer-icon" href="https://www.linkedin.com/in/barbara-moreira-azevedo/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a class="footer-icon" href="https://github.com/barbaramazevedo" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+        <div class="footer-copy">
+            © 2026 Copyleft <a href="#">Bárbara Azevedo</a>
+        </div>
+    </footer>
+
+</body>
+</html>
