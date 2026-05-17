@@ -20,7 +20,7 @@ form.addEventListener("submit", (event) => {
     // Validação campo nome
     const nome = document.querySelector("#inputNome").value;
     if (!nome) {
-        erroNome.textContent = "Campo Obrigatório!";
+        erroNome.textContent = "Campo Obrigatório";
         formularioValido = false;
         document.getElementById("inputNome").style.border = "solid 2px red";
     }
@@ -28,7 +28,7 @@ form.addEventListener("submit", (event) => {
     // Validação campo email
     const email = document.querySelector("#inputEmail").value;
     if (!email) {
-        erroEmail.textContent = "Campo Obrigatório!";
+        erroEmail.textContent = "Campo Obrigatório";
         formularioValido = false;
         document.getElementById("inputEmail").style.border = "solid 2px red";
     }
@@ -56,10 +56,18 @@ form.addEventListener("submit", (event) => {
     }
 
     if (formularioValido) {
-        setTimeout(() => {
-            const alerta = document.getElementById("cadastroAlert");
-            alerta.classList.remove("alert-hidden");
-            alerta.classList.add("alert-visivel");
-        }, 2000);
+       showAlert();
     }
 });
+
+function showAlert() {
+    const alerta = document.getElementById("cadastroAlert");
+
+    alerta.classList.remove("alert-hidden");
+    alerta.classList.add("alert-visivel");
+
+    setTimeout(() => {
+        alerta.classList.remove("alert-visivel");
+        alerta.classList.add("alert-hidden");
+    }, 2000);
+}
