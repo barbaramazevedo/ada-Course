@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Login — To-Do List</title>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a class="navbar-brand" href="./home.html">
+            <img src="../img/check.png" alt="Logo">
+            To-Do List
+        </a>
+        <div class="navbar-actions">
+            <a href="../register/index.html" class="btn btn-outline-primary">Cadastre-se</a>
+        </div>
+    </nav>
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <h1>Entrar</h1>
+
+            <div id="loginAlert" class="alert alert-success alert-hidden">Login realizado com sucesso!</div>
+
+            <form novalidate>
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" class="form-control" id="inputLoginEmail" name="email"
+                           placeholder="Digite seu email" required>
+                    <span class="error-msg" id="erroLoginEmail"></span>       
+                </div>
+                <div class="form-group">
+                    <label for="loginSenha">Senha</label>
+                    <input type="password" class="form-control" id="inputLoginSenha" name="senha"
+                           placeholder="Digite sua senha" required>
+                    <span class="error-msg" id="erroLoginSenha"></span>          
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Entrar</button>
+            </form>
+
+            <p class="auth-footer">
+                Não tem uma conta? <a href="./cadastro.html">Cadastre-se</a>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-icons">
+            <a class="footer-icon" href="#" title="Google"><i class="fab fa-google"></i></a>
+            <a class="footer-icon" href="https://www.linkedin.com/in/barbara-moreira-azevedo/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a class="footer-icon" href="https://github.com/barbaramazevedo" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+        <div class="footer-copy">
+            © 2026 Copyleft <a href="#">Bárbara Azevedo</a>
+        </div>
+        <script src="./script.js"></script>
+    </footer>
+
+</body>
+</html>
