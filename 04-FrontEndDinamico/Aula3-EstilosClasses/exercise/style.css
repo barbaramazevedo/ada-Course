@@ -61,3 +61,8 @@ input[type="checkbox"] {
     cursor: pointer;
     display: inline-block;
 }
+
+.checked {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
